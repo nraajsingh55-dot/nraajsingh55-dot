@@ -44,6 +44,8 @@ I'm building hands-on expertise in **Cloud & DevOps Engineering** — working th
 <img src="https://img.shields.io/badge/Power_Query-F2C811?style=flat-square&logo=powerbi&logoColor=black" />
 <img src="https://img.shields.io/badge/ERP-F76B1C?style=flat-square" />
 <img src="https://img.shields.io/badge/SAP-1F6FEB?style=flat-square" />
+<img src="https://img.shields.io/badge/python-217346?style=flat-square&logo=microsoftexcel&logoColor=green" />
+<img src="https://img.shields.io/badge/Power_BI-F2C811?style=flat-square&logo=powerbi&logoColor=pink" />
 
 </div>
 
