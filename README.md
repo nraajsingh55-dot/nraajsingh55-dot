@@ -1,5 +1,5 @@
-<h1 align="center">≡ƒæï Hi, I'm Neeraj Singh</h1>
-<h3 align="center">Finance & R2R Professional ΓåÆ Aspiring DevOps & Cloud Engineer ≡ƒÜÇ</h3>
+<h1 align="center">👋 Hi, I'm Neeraj Singh</h1>
+<h3 align="center">Finance & R2R Professional → Aspiring DevOps & Cloud Engineer 🚀</h3>
 
 <p align="center">
   <a href="https://www.linkedin.com/in/neeraj-singh-b86424178" target="_blank">
@@ -22,21 +22,21 @@
 
 ---
 
-### ≡ƒæ¿ΓÇì≡ƒÆ╝ About Me
+### 👨‍💼 About Me
 
-I bring **5+ years of finance operations experience** (Record-to-Report, reconciliation) and a detail-first mindset into cloud infrastructure. Currently **working in finance operations**, while also completing a **hands-on DevOps internship** ΓÇö building real Azure + Terraform infrastructure, one module at a time.
+I bring **5+ years of finance operations experience** (Record-to-Report, reconciliation) and a detail-first mindset into cloud infrastructure. Currently **working in finance operations**, while also completing a **hands-on DevOps internship** — building real Azure + Terraform infrastructure, one module at a time.
 
-- ≡ƒö¡ Currently reconciling *ledgers by day, infrastructure by night*
-- ≡ƒî▒ Learning **Docker** and **Kubernetes** to complete the DevOps stack
-- ≡ƒÆ╝ 5+ yrs in **R2R / Financial Operations** ΓÇö JD Edwards, AS400, Advanced Excel, Power Query
-- Γÿü∩╕Å Hands-on with **Azure networking, load balancers, NAT Gateway, Azure Bastion**
-- ≡ƒÅù∩╕Å Comfortable with **Terraform** ΓÇö modules, `for_each`, remote backends
-- ≡ƒÄ» Goal: full-time **DevOps / Cloud Engineer** role in NCR (Delhi ┬╖ Gurgaon ┬╖ Noida)
-- ≡ƒÆ¼ Ask me about: R2R reconciliation, Azure infra basics, or transitioning careers into tech
+- 🔭 Currently reconciling *ledgers by day, infrastructure by night*
+- 🌱 Learning **Docker** and **Kubernetes** to complete the DevOps stack
+- 💼 5+ yrs in **R2R / Financial Operations** — JD Edwards, AS400, Advanced Excel, Power Query
+- ☁️ Hands-on with **Azure networking, load balancers, NAT Gateway, Azure Bastion**
+- 🏗️ Comfortable with **Terraform** — modules, `for_each`, remote backends
+- 🎯 Goal: full-time **DevOps / Cloud Engineer** role in NCR (Delhi · Gurgaon · Noida)
+- 💬 Ask me about: R2R reconciliation, Azure infra basics, or transitioning careers into tech
 
 ---
 
-### ≡ƒ¢á∩╕Å Tech Stack
+### 🛠️ Tech Stack
 
 **Cloud & Infrastructure**
 
@@ -72,25 +72,25 @@ I bring **5+ years of finance operations experience** (Record-to-Report, reconci
 
 ---
 
-### ≡ƒÜÇ Featured / Pinned Repositories
+### 🚀 Featured / Pinned Repositories
 
 | Repository | Focus | Status |
 |---|---|---|
-| [devOps-Insiders](https://github.com/nraajsingh55-dot/devOps-Insiders) | My DevOps Insiders Batch 18 project & practice work | ≡ƒö╡ Active |
-| [azure-aws-gcp-devsecops-mlops-batch-18](https://github.com/nraajsingh55-dot/azure-aws-gcp-devsecops-mlops-batch-18) | Forked Batch 18 class notes, assignments & code snippets | ≡ƒôÜ Reference |
-| [Git---general-DevOps-practice-](https://github.com/nraajsingh55-dot/Git---general-DevOps-practice-) | Terraform pre-prod environment setup for Azure VMs | ≡ƒö╡ Active |
-| [Devops-Practice](https://github.com/nraajsingh55-dot/Devops-Practice) | Azure landing zone practice | ≡ƒƒí In progress |
-| [StreamFlix](https://github.com/nraajsingh55-dot/StreamFlix) | Forked Netflix-style app ΓÇö used as target app for load-balancer/deploy labs | ≡ƒôÜ Reference |
+| [devOps-Insiders](https://github.com/nraajsingh55-dot/devOps-Insiders) | My DevOps Insiders Batch 18 project & practice work | 🔵 Active |
+| [azure-aws-gcp-devsecops-mlops-batch-18](https://github.com/nraajsingh55-dot/azure-aws-gcp-devsecops-mlops-batch-18) | Forked Batch 18 class notes, assignments & code snippets | 📚 Reference |
+| [Git---general-DevOps-practice-](https://github.com/nraajsingh55-dot/Git---general-DevOps-practice-) | Terraform pre-prod environment setup for Azure VMs | 🔵 Active |
+| [Devops-Practice](https://github.com/nraajsingh55-dot/Devops-Practice) | Azure landing zone practice | 🟡 In progress |
+| [StreamFlix](https://github.com/nraajsingh55-dot/StreamFlix) | Forked Netflix-style app — used as target app for load-balancer/deploy labs | 📚 Reference |
 
 ---
 
-### ≡ƒôÜ Currently Learning
+### 📚 Currently Learning
 
-`Azure` ΓåÆ `Terraform` ΓåÆ `Networking & Security` ΓåÆ `Docker` ΓåÆ `Kubernetes` ΓåÆ `CI/CD`
+`Azure` → `Terraform` → `Networking & Security` → `Docker` → `Kubernetes` → `CI/CD`
 
 ---
 
-### ≡ƒôê GitHub Stats
+### 📈 GitHub Stats
 
 <p align="center">
   <img src="https://github-readme-stats.vercel.app/api?username=nraajsingh55-dot&show_icons=true&hide_border=true&theme=tokyonight" width="48%" />
@@ -103,7 +103,7 @@ I bring **5+ years of finance operations experience** (Record-to-Report, reconci
 
 ---
 
-### ≡ƒñ¥ Connect With Me
+### 🤝 Connect With Me
 
 <p align="center">
   <a href="https://www.linkedin.com/in/neeraj-singh-b86424178" target="_blank">
@@ -117,5 +117,4 @@ I bring **5+ years of finance operations experience** (Record-to-Report, reconci
   </a>
 </p>
 
-<p align="center"><i>Γ¡É Reconciling ledgers by profession, building infrastructure by passion.</i></p>
-
+<p align="center"><i>⭐ Reconciling ledgers by profession, building infrastructure by passion.</i></p>
