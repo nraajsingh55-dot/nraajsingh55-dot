@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neeraj Singh — Reconciling Ledgers &amp; Infrastructure</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b1220;
+    --surface:#121b2e;
+    --surface-2:#0f1729;
+    --rule:#2a3550;
+    --ledger:#e8e1cf;
+    --ink-gold:#d4af6a;
+    --ink-teal:#4fd1c5;
+    --text:#eaeff7;
+    --text-muted:#8593ad;
+    --text-dim:#5a6785;
+    --radius:2px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'IBM Plex Sans', system-ui, sans-serif;
+    line-height:1.6;
+    background-image:
+      linear-gradient(var(--surface-2) 1px, transparent 1px),
+      linear-gradient(90deg, var(--surface-2) 1px, transparent 1px);
+    background-size: 100% 44px, 44px 100%;
+    background-attachment: fixed;
+  }
+  .mono{font-family:'JetBrains Mono', ui-monospace, monospace;}
+  a{color:inherit;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
+
+  /* ===== Top bar ===== */
+  .topbar{
+    position:sticky; top:0; z-index:50;
+    background:rgba(11,18,32,0.88);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--rule);
+  }
+  .topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:56px;}
+  .brand{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:14px;letter-spacing:0.02em;color:var(--text);}
+  .brand span{color:var(--ink-teal);}
+  .navlinks{display:flex;gap:22px;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:0.08em;}
+  .navlinks a{color:var(--text-muted);text-decoration:none;transition:color .2s;}
+  .navlinks a:hover{color:var(--ink-teal);}
+  @media (max-width:700px){ .navlinks{display:none;} }
+
+  /* ===== Hero ===== */
+  .hero{padding:90px 0 70px;position:relative;}
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.14em;
+    color:var(--ink-gold); text-transform:uppercase; margin-bottom:18px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{content:"";width:22px;height:1px;background:var(--ink-gold);display:inline-block;}
+  h1{
+    font-family:'IBM Plex Sans',sans-serif;
+    font-weight:700; font-size:clamp(38px,6vw,64px);
+    letter-spacing:-0.02em; line-height:1.04; margin-bottom:16px;
+  }
+  h1 .accent{color:var(--ink-teal);}
+  .role-line{
+    font-family:'JetBrains Mono',monospace; font-size:15px; color:var(--text-muted);
+    margin-bottom:30px; max-width:640px;
+  }
+  .role-line b{color:var(--ledger); font-weight:500;}
+
+  .terminal{
+    background:var(--surface); border:1px solid var(--rule); border-radius:var(--radius);
+    max-width:640px; overflow:hidden; box-shadow:0 20px 50px -20px rgba(0,0,0,0.6);
+  }
+  .terminal-head{
+    display:flex; align-items:center; gap:8px; padding:10px 14px;
+    border-bottom:1px solid var(--rule); background:var(--surface-2);
+  }
+  .dot{width:9px;height:9px;border-radius:50%;background:var(--rule);}
+  .terminal-head span{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-dim);margin-left:6px;}
+  .terminal-body{padding:18px 16px;font-family:'JetBrains Mono',monospace;font-size:13.5px;color:var(--ink-teal);}
+  .terminal-body .line{color:var(--text-muted);margin-bottom:6px;}
+  .terminal-body .line b{color:var(--text);font-weight:500;}
+  #typed::after{content:"▌"; animation:blink 1s step-end infinite; color:var(--ink-teal);}
+  @keyframes blink{50%{opacity:0;}}
+
+  .hero-cta{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap;}
+  .btn{
+    font-family:'JetBrains Mono',monospace; font-size:12.5px; letter-spacing:0.04em;
+    padding:11px 18px; border-radius:var(--radius); text-decoration:none;
+    border:1px solid var(--rule); color:var(--text); transition:all .2s;
+  }
+  .btn.primary{background:var(--ink-teal); color:#08201d; border-color:var(--ink-teal); font-weight:600;}
+  .btn.primary:hover{background:#6ee0d4;}
+  .btn:not(.primary):hover{border-color:var(--ink-teal); color:var(--ink-teal);}
+
+  /* ===== Ledger tape divider ===== */
+  .tape{
+    height:34px; margin:10px 0;
+    background-image: repeating-linear-gradient(90deg, var(--rule) 0 10px, transparent 10px 20px);
+    background-position:center; background-repeat:no-repeat; background-size:100% 1px;
+    position:relative;
+  }
+  .tape::before,.tape::after{
+    content:""; position:absolute; top:0; width:17px; height:17px; border-radius:50%;
+    background:var(--bg); border:1px solid var(--rule);
+  }
+  .tape::before{left:24px;} .tape::after{right:24px;}
+
+  /* ===== Section shell ===== */
+  section{padding:64px 0;}
+  .section-head{margin-bottom:38px;}
+  .section-num{
+    font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--text-dim);
+    letter-spacing:0.1em; margin-bottom:8px;
+  }
+  h2{font-size:clamp(24px,3vw,32px); font-weight:700; letter-spacing:-0.01em;}
+
+  /* ===== About ===== */
+  .about-grid{display:grid; grid-template-columns:1.3fr 1fr; gap:48px; align-items:start;}
+  @media (max-width:800px){ .about-grid{grid-template-columns:1fr;} }
+  .about-grid p{color:var(--text-muted); margin-bottom:14px; max-width:60ch;}
+  .about-grid strong{color:var(--ledger); font-weight:600;}
+  .stat-card{
+    background:var(--surface); border:1px solid var(--rule); border-radius:var(--radius); padding:22px;
+  }
+  .stat-row{display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px dashed var(--rule); font-family:'JetBrains Mono',monospace; font-size:13px;}
+  .stat-row:last-child{border-bottom:none;}
+  .stat-row span:first-child{color:var(--text-muted);}
+  .stat-row span:last-child{color:var(--ledger); font-weight:500;}
+
+  /* ===== Ledger split: Finance vs Infra ===== */
+  .ledger-split{
+    display:grid; grid-template-columns:1fr auto 1fr; gap:0; border:1px solid var(--rule); border-radius:var(--radius); overflow:hidden;
+  }
+  @media (max-width:800px){ .ledger-split{grid-template-columns:1fr;} .ledger-split .col-divider{display:none;} }
+  .ledger-col{padding:32px;}
+  .ledger-col.debit{background:linear-gradient(180deg, rgba(212,175,106,0.06), transparent);}
+  .ledger-col.credit{background:linear-gradient(180deg, rgba(79,209,197,0.06), transparent);}
+  .col-label{
+    font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase;
+    margin-bottom:4px;
+  }
+  .debit .col-label{color:var(--ink-gold);}
+  .credit .col-label{color:var(--ink-teal);}
+  .col-title{font-size:19px; font-weight:600; margin-bottom:18px;}
+  .ledger-entry{padding:12px 0; border-top:1px solid var(--rule);}
+  .ledger-entry:first-of-type{border-top:none;}
+  .ledger-entry .role{font-weight:600; font-size:14.5px; margin-bottom:2px;}
+  .ledger-entry .meta{font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--text-dim); margin-bottom:6px;}
+  .ledger-entry .desc{font-size:13.5px; color:var(--text-muted);}
+  .col-divider{
+    width:1px; background:repeating-linear-gradient(180deg, var(--rule) 0 6px, transparent 6px 12px);
+  }
+  .stamp{
+    display:inline-flex; align-items:center; gap:8px; margin-top:22px; padding:8px 14px;
+    border:1.5px solid var(--ink-teal); border-radius:var(--radius); color:var(--ink-teal);
+    font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase;
+    transform:rotate(-2deg); opacity:0.9;
+  }
+
+  /* ===== Skills ===== */
+  .skill-groups{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:22px;}
+  .skill-card{background:var(--surface); border:1px solid var(--rule); border-radius:var(--radius); padding:20px;}
+  .skill-card h3{
+    font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--ink-teal); margin-bottom:14px;
+  }
+  .badges{display:flex; flex-wrap:wrap; gap:8px;}
+  .badge{
+    font-family:'JetBrains Mono',monospace; font-size:11.5px; padding:5px 10px;
+    background:var(--surface-2); border:1px solid var(--rule); border-radius:20px; color:var(--text);
+  }
+  .badge.learning{color:var(--ink-gold); border-color:rgba(212,175,106,0.4);}
+  .badge.learning::after{content:" · learning"; opacity:0.8;}
+
+  /* ===== Projects ===== */
+  .projects{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:20px;}
+  .project-card{
+    border:1px solid var(--rule); border-radius:var(--radius); padding:22px; background:var(--surface);
+    position:relative;
+  }
+  .project-status{
+    position:absolute; top:18px; right:18px; font-family:'JetBrains Mono',monospace; font-size:10px;
+    letter-spacing:0.08em; text-transform:uppercase; color:var(--text-dim); border:1px solid var(--rule);
+    padding:3px 8px; border-radius:20px;
+  }
+  .project-card h3{font-size:16px; font-weight:600; margin-bottom:10px; padding-right:80px;}
+  .project-card p{font-size:13.5px; color:var(--text-muted); margin-bottom:14px;}
+  .project-tags{display:flex; flex-wrap:wrap; gap:6px;}
+  .project-tags span{font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--ink-teal); background:rgba(79,209,197,0.08); padding:3px 8px; border-radius:20px;}
+
+  /* ===== Timeline ===== */
+  .timeline{border-left:1px solid var(--rule); padding-left:26px; margin-left:6px;}
+  .t-item{position:relative; padding-bottom:30px;}
+  .t-item:last-child{padding-bottom:0;}
+  .t-item::before{
+    content:""; position:absolute; left:-31px; top:4px; width:9px; height:9px; border-radius:50%;
+    background:var(--ink-teal); box-shadow:0 0 0 3px rgba(79,209,197,0.15);
+  }
+  .t-date{font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--text-dim); margin-bottom:4px;}
+  .t-title{font-weight:600; font-size:15px; margin-bottom:4px;}
+  .t-desc{font-size:13.5px; color:var(--text-muted); max-width:60ch;}
+
+  /* ===== Contact / footer ===== */
+  .contact{
+    border:1px solid var(--rule); border-radius:var(--radius); padding:40px; text-align:center;
+    background:radial-gradient(ellipse at top, rgba(79,209,197,0.06), transparent);
+  }
+  .contact h2{margin-bottom:10px;}
+  .contact p{color:var(--text-muted); max-width:50ch; margin:0 auto 24px;}
+  .contact-links{display:flex; justify-content:center; gap:14px; flex-wrap:wrap;}
+  footer{padding:30px 0 60px; text-align:center; font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--text-dim);}
+
+  .reveal{opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1; transform:none; transition:none;}
+    #typed::after{animation:none;}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="brand">neeraj<span>@</span>portfolio<span>:~$</span></div>
+    <nav class="navlinks">
+      <a href="#about">about</a>
+      <a href="#ledger">experience</a>
+      <a href="#skills">skills</a>
+      <a href="#projects">projects</a>
+      <a href="#journey">journey</a>
+      <a href="#contact">contact</a>
+    </nav>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Finance-trained · Infra-focused</div>
+    <h1>Neeraj Singh<br>Reconciling <span class="accent">ledgers</span> &amp; infrastructure.</h1>
+    <p class="role-line">
+      <b>DevOps Engineer</b> in training, currently working in Record-to-Report finance operations at
+      <b>Genpact India</b>. Building toward a full-time Cloud &amp; DevOps role — Azure, Terraform, containers, and CI/CD.
+    </p>
+    <div class="terminal">
+      <div class="terminal-head"><div class="dot"></div><div class="dot"></div><div class="dot"></div><span>neeraj — zsh</span></div>
+      <div class="terminal-body">
+        <div class="line">$ whoami</div>
+        <div class="line"><b>neeraj-singh</b> — reconciliation analyst → devops engineer</div>
+        <div class="line">$ cat career.status</div>
+        <div id="typed">two ledgers, one balance sheet: finance debits, infra credits.</div>
+      </div>
+    </div>
+    <div class="hero-cta">
+      <a class="btn primary" href="https://github.com/YOUR_GITHUB_USERNAME" target="_blank" rel="noopener">View GitHub →</a>
+      <a class="btn" href="#projects">See projects</a>
+      <a class="btn" href="#contact">Get in touch</a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap"><div class="tape"></div></div>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-num mono">// 01 — about</div>
+      <h2>Two disciplines, one working method</h2>
+    </div>
+    <div class="about-grid reveal">
+      <div>
+        <p>
+          I spend my days closing the books — matching thousands of transaction lines across
+          <strong>Excel, JD Edwards, and AS400</strong> until every debit finds its credit. That discipline —
+          precision, traceability, "if it doesn't balance, don't ship it" — is exactly the mindset I'm now
+          applying to infrastructure.
+        </p>
+        <p>
+          I completed a one-year hands-on <strong>DevOps internship with DevOps Insiders (Batch 18)</strong>,
+          working through real labs on Azure networking, load balancing, and Terraform. I'm actively building
+          toward containers and CI/CD next. Reconciliation taught me to distrust anything unverified —
+          Infrastructure as Code lets me apply that same rigor with version control instead of a checklist.
+        </p>
+      </div>
+      <div class="stat-card">
+        <div class="stat-row"><span>Current role</span><span>R2R Analyst, Genpact India</span></div>
+        <div class="stat-row"><span>Training track</span><span>DevOps Insiders — Batch 18</span></div>
+        <div class="stat-row"><span>Core cloud</span><span>Microsoft Azure</span></div>
+        <div class="stat-row"><span>IaC</span><span>Terraform</span></div>
+        <div class="stat-row"><span>Based in</span><span>Uttar Pradesh, India</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="tape"></div></div>
+
+<section id="ledger">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-num mono">// 02 — experience ledger</div>
+      <h2>Debit: finance. Credit: infrastructure.</h2>
+    </div>
+    <div class="ledger-split reveal">
+      <div class="ledger-col debit">
+        <div class="col-label">Debit — Finance Operations</div>
+        <div class="col-title">Record to Report</div>
+        <div class="ledger-entry">
+          <div class="role">Reconciliation Analyst — Genpact India</div>
+          <div class="meta mono">R2R domain · Wave 3</div>
+          <div class="desc">Own monthly reconciliation across hundreds of unit files, consolidating multi-system data from JD Edwards and AS400 into master reporting files using advanced Excel and Power Query.</div>
+        </div>
+        <div class="ledger-entry">
+          <div class="role">Multi-system data consolidation</div>
+          <div class="meta mono">Power Query · Excel</div>
+          <div class="desc">Built repeatable Power Query workflows to merge and validate large recurring datasets under strict compliance constraints (no macros, no scripting tools).</div>
+        </div>
+      </div>
+      <div class="col-divider"></div>
+      <div class="ledger-col credit">
+        <div class="col-label">Credit — Infrastructure</div>
+        <div class="col-title">Cloud &amp; DevOps</div>
+        <div class="ledger-entry">
+          <div class="role">DevOps Support Engineer (Internship)</div>
+          <div class="meta mono">DevOps Insiders · Batch 18 · 1 year, hands-on</div>
+          <div class="desc">Hands-on labs across Azure networking and load balancing, NAT Gateway, Azure Bastion, and modular Terraform projects — building toward containers and CI/CD.</div>
+        </div>
+        <div class="ledger-entry">
+          <div class="role">Infrastructure as Code</div>
+          <div class="meta mono">Terraform · Azure · Git</div>
+          <div class="desc">Provisioned and tore down Azure environments (VMs, load balancers, NAT gateways) using Terraform modules, following a disciplined build → verify → teardown workflow.</div>
+        </div>
+        <div class="stamp">✓ Reconciled</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="tape"></div></div>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-num mono">// 03 — skills</div>
+      <h2>Toolset</h2>
+    </div>
+    <div class="skill-groups reveal">
+      <div class="skill-card">
+        <h3>Cloud &amp; IaC</h3>
+        <div class="badges">
+          <span class="badge">Microsoft Azure</span>
+          <span class="badge">Terraform</span>
+          <span class="badge">Azure Load Balancer</span>
+          <span class="badge">NAT Gateway</span>
+          <span class="badge">Azure Bastion</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Containers</h3>
+        <div class="badges">
+          <span class="badge learning">Docker</span>
+          <span class="badge learning">Kubernetes</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>CI/CD &amp; Version Control</h3>
+        <div class="badges">
+          <span class="badge">Git</span>
+          <span class="badge">GitHub</span>
+          <span class="badge">CI/CD Pipelines</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Finance &amp; Reconciliation</h3>
+        <div class="badges">
+          <span class="badge">Advanced Excel</span>
+          <span class="badge">Power Query</span>
+          <span class="badge">JD Edwards</span>
+          <span class="badge">AS400</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="tape"></div></div>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-num mono">// 04 — projects</div>
+      <h2>Ledger of work in progress</h2>
+    </div>
+    <div class="projects reveal">
+      <div class="project-card">
+        <span class="project-status">in progress</span>
+        <h3>Azure Load-Balanced Web Tier</h3>
+        <p>Two-VM load-balanced setup (VM-Netflix / VM-Streamflix pattern) behind an Azure Load Balancer, provisioned end-to-end with Terraform.</p>
+        <div class="project-tags"><span>Azure</span><span>Terraform</span><span>Load Balancer</span></div>
+      </div>
+      <div class="project-card">
+        <span class="project-status">planned</span>
+        <h3>Secure Bastion Access Module</h3>
+        <p>Reusable Terraform module for Azure Bastion + NAT Gateway, replacing public IP exposure with a locked-down jump-host pattern.</p>
+        <div class="project-tags"><span>Terraform</span><span>Azure Bastion</span><span>Security</span></div>
+      </div>
+      <div class="project-card">
+        <span class="project-status">planned</span>
+        <h3>Containerized App on Kubernetes</h3>
+        <p>First end-to-end deployment: Dockerized app shipped to a Kubernetes cluster with a basic CI/CD pipeline from commit to deploy.</p>
+        <div class="project-tags"><span>Docker</span><span>Kubernetes</span><span>CI/CD</span></div>
+      </div>
+      <div class="project-card">
+        <span class="project-status">idea</span>
+        <h3>Recon-to-Cloud Automation</h3>
+        <p>A personal project bridging both worlds — using Power Automate / Azure Functions to reduce manual steps in a recurring reconciliation workflow.</p>
+        <div class="project-tags"><span>Azure Functions</span><span>Automation</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="tape"></div></div>
+
+<section id="journey">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-num mono">// 05 — journey</div>
+      <h2>How the transition is unfolding</h2>
+    </div>
+    <div class="timeline reveal">
+      <div class="t-item">
+        <div class="t-date mono">Ongoing</div>
+        <div class="t-title">Reconciliation Analyst, Genpact India</div>
+        <div class="t-desc">Managing R2R reconciliation across JD Edwards and AS400 data sources, Wave 3.</div>
+      </div>
+      <div class="t-item">
+        <div class="t-date mono">1-year track</div>
+        <div class="t-title">DevOps Insiders — Batch 18</div>
+        <div class="t-desc">Hands-on internship covering Azure networking, load balancing, and Terraform, working from the community's shared lab repository.</div>
+      </div>
+      <div class="t-item">
+        <div class="t-date mono">Next</div>
+        <div class="t-title">Docker, Kubernetes &amp; CI/CD</div>
+        <div class="t-desc">Actively learning containers and pipeline automation to complete the DevOps skill set.</div>
+      </div>
+      <div class="t-item">
+        <div class="t-date mono">Goal</div>
+        <div class="t-title">Full-time DevOps / Cloud role</div>
+        <div class="t-desc">Targeting DevOps Engineer opportunities in the NCR region — Delhi, Gurgaon, Noida.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="contact reveal">
+      <h2>Let's connect</h2>
+      <p>Open to DevOps and Cloud Engineer opportunities — happy to talk about infrastructure, reconciliation-grade rigor, or both.</p>
+      <div class="contact-links">
+        <a class="btn primary" href="https://github.com/YOUR_GITHUB_USERNAME" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn" href="https://www.linkedin.com/in/YOUR_LINKEDIN_HANDLE" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="mailto:YOUR_EMAIL@example.com">Email</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © <span id="year"></span> Neeraj Singh — built by hand, reconciled to zero.
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const els = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    els.forEach(el => io.observe(el));
+  } else {
+    els.forEach(el => el.classList.add('in'));
+  }
+</script>
+
+</body>
+</html>
