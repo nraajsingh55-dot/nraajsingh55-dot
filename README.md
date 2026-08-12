@@ -2,7 +2,8 @@
 
 # 👋 Hi, I'm Neeraj Singh
 
-### Cloud & DevOps Engineer | Azure | Terraform | Ex-Finance
+
+### Cloud & DevOps Engineer | Azure | Terraform | Ex-FinOps
 
 <img src="https://img.shields.io/badge/Azure-0078D4?style=flat-square&logo=microsoftazure&logoColor=white" />
 <img src="https://img.shields.io/badge/Terraform-844FBA?style=flat-square&logo=terraform&logoColor=white" />
