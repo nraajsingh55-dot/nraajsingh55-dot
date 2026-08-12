@@ -24,15 +24,14 @@
 
 ### 👨‍💼 About Me
 
-I bring **5+ years of finance operations experience** (Record-to-Report, reconciliation) and a detail-first mindset into cloud infrastructure. Currently **working in finance operations**, while also completing a **hands-on DevOps internship** — building real Azure + Terraform infrastructure, one module at a time.
+I'm building hands-on expertise in **Cloud & DevOps Engineering** — working through real Azure infrastructure, Terraform modules, and Linux fundamentals via a structured, hands-on internship. I bring a **detail-first, controls-driven mindset from 5+ years in finance operations (Record-to-Report)**, and I'm now applying that same discipline to building reliable, well-documented infrastructure.
 
-- 🔭 Currently reconciling *ledgers by day, infrastructure by night*
-- 🌱 Learning **Docker** and **Kubernetes** to complete the DevOps stack
-- 💼 5+ yrs in **R2R / Financial Operations** — JD Edwards, AS400, Advanced Excel, Power Query
-- ☁️ Hands-on with **Azure networking, load balancers, NAT Gateway, Azure Bastion**
+- ☁️ Hands-on internship in **DevOps** — Azure networking, load balancers, NAT Gateway, Azure Bastion
 - 🏗️ Comfortable with **Terraform** — modules, `for_each`, remote backends
+- 🌱 Currently deepening skills in **Docker** and **Kubernetes**
+- 💼 Also **working in finance operations** — 5+ yrs in R2R / reconciliation (JD Edwards, AS400, Advanced Excel, Power Query)
 - 🎯 Goal: full-time **DevOps / Cloud Engineer** role in NCR (Delhi · Gurgaon · Noida)
-- 💬 Ask me about: R2R reconciliation, Azure infra basics, or transitioning careers into tech
+- 💬 Ask me about: Azure infra basics, Terraform, or transitioning a finance career into tech
 
 ---
 
@@ -112,7 +111,7 @@ I bring **5+ years of finance operations experience** (Record-to-Report, reconci
   <a href="https://github.com/nraajsingh55-dot" target="_blank">
     <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" />
   </a>
-  <a href="mailto:YOUR_EMAIL@example.com" target="_blank">
+  <a href="mailto:Nraajsingh55@gmail.com" target="_blank">
     <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" />
   </a>
 </p>
