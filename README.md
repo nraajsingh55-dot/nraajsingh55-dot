@@ -55,10 +55,10 @@ I'm building hands-on expertise in **Cloud & DevOps Engineering** — working th
 
 | Repository | Focus |
 |---|---|
-| [devOps-Insiders](https://github.com/nraajsingh55-dot/devOps-Insiders) | Hands-on DevOps internship project & practice work |
-| [Git---general-DevOps-practice-](https://github.com/nraajsingh55-dot/Git---general-DevOps-practice-) | Terraform pre-prod environment setup for Azure VMs |
-| [Devops-Practice](https://github.com/nraajsingh55-dot/Devops-Practice) | Azure landing zone practice |
-| [StreamFlix](https://github.com/nraajsingh55-dot/StreamFlix) | Practice app used for load-balancer / deployment labs |
+| [devOps-Insiders](https://github.com/NeerajSingh-DevOps/devOps-Insiders) | Hands-on DevOps internship project & practice work |
+| [Git---general-DevOps-practice-](https://github.com/NeerajSingh-DevOps/Git---general-DevOps-practice-) | Terraform pre-prod environment setup for Azure VMs |
+| [Devops-Practice](https://github.com/NeerajSingh-DevOps/Devops-Practice) | Azure landing zone practice |
+| [StreamFlix](https://github.com/NeerajSingh-DevOps/StreamFlix) | Practice app used for load-balancer / deployment labs |
 
 <br/>
 
@@ -66,12 +66,12 @@ I'm building hands-on expertise in **Cloud & DevOps Engineering** — working th
 
 <div align="center">
 
-<img src="https://github-readme-stats.vercel.app/api?username=nraajsingh55-dot&show_icons=true&hide_border=true&theme=tokyonight" width="48%" />
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=nraajsingh55-dot&layout=compact&hide_border=true&theme=tokyonight" width="38%" />
+<img src="https://github-readme-stats.vercel.app/api?username=NeerajSingh-DevOps&show_icons=true&hide_border=true&theme=tokyonight" width="48%" />
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=NeerajSingh-DevOps&layout=compact&hide_border=true&theme=tokyonight" width="38%" />
 
 <br/>
 
-<img src="https://streak-stats.demolab.com/?user=nraajsingh55-dot&theme=tokyonight&hide_border=true" width="60%" />
+<img src="https://streak-stats.demolab.com/?user=NeerajSingh-DevOps&theme=tokyonight&hide_border=true" width="60%" />
 
 </div>
 
@@ -89,8 +89,8 @@ I'm building hands-on expertise in **Cloud & DevOps Engineering** — working th
 
 Open to DevOps and Cloud Engineer opportunities — happy to talk infrastructure, reconciliation-grade rigor, or both.
 
-<a href="https://www.linkedin.com/in/neeraj-singh-b86424178" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
-<a href="https://github.com/nraajsingh55-dot" target="_blank"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" /></a>
+<a href="https://www.linkedin.com/in/NeerajSingh-DevOps" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
+<a href="https://github.com/NeerajSingh-DevOps" target="_blank"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" /></a>
 <a href="mailto:Nraajsingh55@gmail.com" target="_blank"><img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" /></a>
 
 <br/><br/>
